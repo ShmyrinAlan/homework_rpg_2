@@ -3,25 +3,25 @@
 Use this checklist to track your progress and ensure you've completed all requirements.
 
 ## Phase 1: Understanding (Day 1)
-- [ ] Read `README.md` completely
-- [ ] Read `ASSIGNMENT.md` completely
-- [ ] Research Builder pattern
-  - [ ] Understand the telescoping constructor problem
-  - [ ] Understand fluent interface / method chaining
-  - [ ] Find at least 2 example implementations online
-- [ ] Research Prototype pattern
-  - [ ] Understand deep copy vs shallow copy
-  - [ ] Understand template/registry concept
-  - [ ] Find at least 2 example implementations online
-- [ ] Review Abstract Factory pattern (from HW1)
-  - [ ] Understand product families concept
-  - [ ] Understand how it applies to themed components
-- [ ] Study the provided code:
-  - [ ] `DragonBoss.java` — feel the constructor pain!
-  - [ ] `Goblin.java` — simple enemy structure
-  - [ ] `EnemyComponentFactory.java` — Abstract Factory interface
-  - [ ] `BUILDER_HINTS.md` — Builder & Prototype guidance
-  - [ ] `FACTORY_HINTS.md` — Abstract Factory & Factory Method guidance
+- [x] Read `README.md` completely
+- [x] Read `ASSIGNMENT.md` completely
+- [x] Research Builder pattern
+  - [x] Understand the telescoping constructor problem
+  - [x] Understand fluent interface / method chaining
+  - [x] Find at least 2 example implementations online
+- [x] Research Prototype pattern
+  - [x] Understand deep copy vs shallow copy
+  - [x] Understand template/registry concept
+  - [x] Find at least 2 example implementations online
+- [x] Review Abstract Factory pattern (from HW1)
+  - [x] Understand product families concept
+  - [x] Understand how it applies to themed components
+- [x] Study the provided code:
+  - [x] `DragonBoss.java` — feel the constructor pain!
+  - [x] `Goblin.java` — simple enemy structure
+  - [x] `EnemyComponentFactory.java` — Abstract Factory interface
+  - [x] `BUILDER_HINTS.md` — Builder & Prototype guidance
+  - [x] `FACTORY_HINTS.md` — Abstract Factory & Factory Method guidance
 
 ## Phase 2: Planning (Day 1-2)
 - [ ] Sketch full class hierarchy on paper

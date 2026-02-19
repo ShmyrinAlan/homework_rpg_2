@@ -1,5 +1,10 @@
 package com.narxoz.rpg;
 
+import com.narxoz.rpg.loot.BasicLootTable;
+import com.narxoz.rpg.loot.ElfLootDecorator;
+import com.narxoz.rpg.loot.LootTable;
+import com.narxoz.rpg.loot.WaterLootDecorator;
+
 /**
  * Main demonstration class for the RPG Enemy System.
  *
@@ -69,7 +74,10 @@ public class Main {
 
         // Your Abstract Factory demonstration here...
 
-
+        LootTable loot = new BasicLootTable();
+        loot = new WaterLootDecorator(loot);
+        loot = new ElfLootDecorator(loot);
+        System.out.println(loot.getLootInfo());
         // ============================================================
         // PART 2: BUILDER PATTERN
         // ============================================================
