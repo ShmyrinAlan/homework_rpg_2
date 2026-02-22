@@ -1,5 +1,8 @@
 package com.narxoz.rpg;
 
+import com.narxoz.rpg.enemy.Demon;
+import com.narxoz.rpg.enemy.Enemy;
+import com.narxoz.rpg.enemy.Murloc;
 import com.narxoz.rpg.loot.BasicLootTable;
 import com.narxoz.rpg.loot.ElfLootDecorator;
 import com.narxoz.rpg.loot.LootTable;

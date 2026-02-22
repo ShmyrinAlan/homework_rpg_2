@@ -3,6 +3,7 @@ package com.narxoz.rpg.enemy;
 import com.narxoz.rpg.combat.Ability;
 import com.narxoz.rpg.loot.LootTable;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -15,7 +16,7 @@ import java.util.ArrayList;
  * Notice:
  * - Simple stats (low health, low damage)
  * - Basic constructor (only a few parameters — no Builder needed!)
- * - This is intentionally simple to contrast with DragonBoss.java
+ * - This is intentionally simple to contrast with Dragon.java
  *
  * ============================================================
  * IMPORTANT OBSERVATION:
@@ -25,7 +26,7 @@ import java.util.ArrayList;
  * A regular constructor works fine here:
  *     new Goblin("Forest Goblin")
  *
- * But look at DragonBoss.java... THAT'S where Builder shines!
+ * But look at Dragon.java... THAT'S where Builder shines!
  * Simple objects don't need Builder. Complex objects do.
  * Knowing WHEN to use a pattern is as important as knowing HOW.
  *
@@ -53,73 +54,51 @@ import java.util.ArrayList;
  *   - Ability list → MUST be deep copied!
  *   - LootTable → MUST be deep copied!
  */
-public class Goblin implements Enemy {
+public class Goblin extends AbstractEnemy {
 
-    private String name;
-    private int health;
-    private int damage;
-    private int defense;
-    private int speed;
-    private List<Ability> abilities;
-    private LootTable lootTable;
+    private boolean cowardly;
+    private int stealChance;
 
-    // TODO: Add more fields as needed (element, AI behavior, etc.)
-
-    public Goblin(String name) {
-        this.name = name;
-        // Goblin stats: weak but fast
-        this.health = 100;
-        this.damage = 15;
-        this.defense = 5;
-        this.speed = 35;
-        this.abilities = new ArrayList<>();
-        // TODO: Initialize with default abilities
-        // TODO: Initialize with default loot table
+    private Goblin(Builder builder) {
+        super(builder);
+        this.cowardly = builder.cowardly;
+        this.stealChance = builder.stealChance;
     }
 
-    // TODO: Implement methods from Enemy interface
-    // You need to define those methods in Enemy first!
-
-    // Example method structure:
-    public String getName() {
-        return name;
-    }
-
-    public int getHealth() {
-        return health;
-    }
-
+    @Override
     public void displayInfo() {
         System.out.println("=== " + name + " (Goblin) ===");
-        System.out.println("Health: " + health + " | Damage: " + damage
-                + " | Defense: " + defense + " | Speed: " + speed);
-        System.out.println("Abilities: " + abilities.size() + " ability(ies)");
-        // TODO: Display abilities details
-        // TODO: Display loot table
+        displayBaseInfo();
+        System.out.println("Cowardly: " + cowardly +
+                " Steal Chance: " + stealChance + "%");
     }
 
-    // TODO: Implement clone() for Prototype pattern
-    // This is CRITICAL! You must deep copy:
-    //   - The abilities list (create new list, clone each ability)
-    //   - The loot table (clone it)
-    //   - Primitive fields can be copied directly
-    //
-    // Example skeleton:
-    // public Enemy clone() {
-    //     Goblin copy = new Goblin(this.name);
-    //     copy.health = this.health;
-    //     copy.damage = this.damage;
-    //     copy.defense = this.defense;
-    //     copy.speed = this.speed;
-    //     copy.abilities = ???  // DEEP COPY! Not just = this.abilities!
-    //     copy.lootTable = ???  // DEEP COPY!
-    //     return copy;
-    // }
+    @Override
+    public Enemy clone() {
+        return new Builder()
+                .name(name).health(health).damage(damage)
+                .defense(defense).speed(speed)
+                .abilities(getAbilities())
+                .phases(new HashMap<>(phases))
+                .lootTable(lootTable)
+                .cowardly(cowardly)
+                .stealChance(stealChance)
+                .build();
+    }
 
-    // TODO: Add helper methods for Prototype variant creation
-    // Consider methods like:
-    // - void multiplyStats(double multiplier) — for Elite/Champion variants
-    // - void addAbility(Ability ability) — for enhanced variants
-    // - void setElement(String element) — for elemental variants
+    public static Builder builder() {
+        return new Builder();
+    }
 
+    public static class Builder extends BaseBuilder<Builder> {
+
+        private boolean cowardly;
+        private int stealChance;
+
+        public Builder cowardly(boolean val){ cowardly = val; return this; }
+        public Builder stealChance(int val){ stealChance = val; return this; }
+
+        @Override protected Builder self(){ return this; }
+        @Override public Goblin build(){ return new Goblin(this); }
+    }
 }

@@ -29,6 +29,10 @@ package com.narxoz.rpg.combat;
  * - Ability clone()   <-- Critical for Prototype pattern!
  */
 public interface Ability {
+    String getName();
+    int getDamage();
+    String getDescription();
+    Ability clone();
 
     // TODO: Define ability behavior methods
     // Consider:
