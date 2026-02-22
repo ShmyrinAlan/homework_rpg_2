@@ -84,7 +84,7 @@ public class Main {
         loot = new ElfLootDecorator(loot);
         System.out.println(loot.getLootInfo());
 
-        Enemy enemy = Murloc.builder().name("alan").health(12).element(new FireComponentFactory()).build();
+        Enemy enemy = Murloc.builder().name("alan").health(12).element(new FireComponentFactory()).addPhase(1,5).build();
         enemy.displayInfo();
         // ============================================================
         // PART 2: BUILDER PATTERN
