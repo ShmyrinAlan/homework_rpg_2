@@ -99,6 +99,11 @@ public class Goblin extends AbstractEnemy {
         public Builder stealChance(int val){ stealChance = val; return this; }
 
         @Override protected Builder self(){ return this; }
-        @Override public Goblin build(){ return new Goblin(this); }
+        @Override public Goblin build(){
+            if (name == null || health <= 0) {
+                throw new IllegalStateException("Enemy must have name and health!");
+            }
+            return new Goblin(this);
+        }
     }
 }

@@ -51,6 +51,11 @@ public class Elf extends AbstractEnemy {
         public Builder forestAffinity(int val){ forestAffinity = val; return this; }
 
         @Override protected Builder self(){ return this; }
-        @Override public Elf build(){ return new Elf(this); }
+        @Override public Elf build(){
+            if (name == null || health <= 0) {
+                throw new IllegalStateException("Enemy must have name and health!");
+            }
+            return new Elf(this);
+        }
     }
 }

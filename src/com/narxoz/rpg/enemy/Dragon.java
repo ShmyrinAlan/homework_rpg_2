@@ -118,6 +118,11 @@ public class Dragon extends AbstractEnemy {
         public Builder wingspan(int val){ wingspan = val; return this; }
 
         @Override protected Builder self(){ return this; }
-        @Override public Dragon build(){ return new Dragon(this); }
+        @Override public Dragon build(){
+            if (name == null || health <= 0) {
+                throw new IllegalStateException("Enemy must have name and health!");
+            }
+            return new Dragon(this);
+        }
     }
 }

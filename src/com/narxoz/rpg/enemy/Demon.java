@@ -47,6 +47,11 @@ public class Demon extends AbstractEnemy {
         public Builder summonMinions(boolean val){ summonMinions = val; return this; }
 
         @Override protected Builder self(){ return this; }
-        @Override public Demon build(){ return new Demon(this); }
+        @Override public Demon build(){
+            if (name == null || health <= 0) {
+                throw new IllegalStateException("Enemy must have name and health!");
+            }
+            return new Demon(this);
+        }
     }
 }

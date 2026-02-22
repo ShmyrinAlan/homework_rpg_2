@@ -47,6 +47,11 @@ public class Murloc extends AbstractEnemy {
         public Builder swarmBonus(int val){ swarmBonus = val; return this; }
 
         @Override protected Builder self(){ return this; }
-        @Override public Murloc build(){ return new Murloc(this); }
+        @Override public Murloc build(){
+            if (name == null || health <= 0) {
+                throw new IllegalStateException("Enemy must have name and health!");
+            }
+            return new Murloc(this);
+        }
     }
 }

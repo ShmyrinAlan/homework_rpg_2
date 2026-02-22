@@ -78,11 +78,11 @@ public abstract class AbstractEnemy implements Enemy {
 
     public abstract static class BaseBuilder<T extends BaseBuilder<T>> {
 
-        private String name;
-        private int health;
-        private int damage;
-        private int defense;
-        private int speed;
+        protected String name;
+        protected int health;
+        protected int damage;
+        protected int defense;
+        protected int speed;
 
         private List<Ability> abilities = new ArrayList<>();
         private Map<Integer,Integer> phases = new HashMap<>();
