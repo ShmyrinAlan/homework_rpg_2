@@ -3,6 +3,8 @@ package com.narxoz.rpg;
 import com.narxoz.rpg.enemy.Demon;
 import com.narxoz.rpg.enemy.Enemy;
 import com.narxoz.rpg.enemy.Murloc;
+import com.narxoz.rpg.factory.ElfComponentFactory;
+import com.narxoz.rpg.factory.FireComponentFactory;
 import com.narxoz.rpg.loot.BasicLootTable;
 import com.narxoz.rpg.loot.ElfLootDecorator;
 import com.narxoz.rpg.loot.LootTable;
@@ -81,6 +83,9 @@ public class Main {
         loot = new WaterLootDecorator(loot);
         loot = new ElfLootDecorator(loot);
         System.out.println(loot.getLootInfo());
+
+        Enemy enemy = Murloc.builder().name("alan").health(12).element(new FireComponentFactory()).build();
+        enemy.displayInfo();
         // ============================================================
         // PART 2: BUILDER PATTERN
         // ============================================================

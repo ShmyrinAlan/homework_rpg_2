@@ -12,7 +12,7 @@ public class WaterLootDecorator extends LootDecorator {
     @Override
     public String getLootInfo() {
         return String.format("""
-                ====== LOOT ======
+                
                 gold: %d
                 exp: %d
                 items: %s

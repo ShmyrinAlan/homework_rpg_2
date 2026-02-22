@@ -1,6 +1,7 @@
 package com.narxoz.rpg.enemy;
 
 import com.narxoz.rpg.combat.Ability;
+import com.narxoz.rpg.factory.GoblinComponentFactory;
 import com.narxoz.rpg.loot.LootTable;
 
 import java.util.HashMap;
@@ -63,6 +64,8 @@ public class Goblin extends AbstractEnemy {
         super(builder);
         this.cowardly = builder.cowardly;
         this.stealChance = builder.stealChance;
+        this.race = new GoblinComponentFactory();
+        this.aiBehavior = String.join(" ,", List.of(race.createAIBehavior(), element.createAIBehavior()));
     }
 
     @Override
@@ -78,9 +81,8 @@ public class Goblin extends AbstractEnemy {
         return new Builder()
                 .name(name).health(health).damage(damage)
                 .defense(defense).speed(speed)
-                .abilities(getAbilities())
+                .element(element)
                 .phases(new HashMap<>(phases))
-                .lootTable(lootTable)
                 .cowardly(cowardly)
                 .stealChance(stealChance)
                 .build();

@@ -1,6 +1,9 @@
 package com.narxoz.rpg.enemy;
 
+import com.narxoz.rpg.factory.MurlocComponentFactory;
+
 import java.util.HashMap;
+import java.util.List;
 
 public class Murloc extends AbstractEnemy {
 
@@ -11,6 +14,8 @@ public class Murloc extends AbstractEnemy {
         super(builder);
         this.aquatic = builder.aquatic;
         this.swarmBonus = builder.swarmBonus;
+        this.race = new MurlocComponentFactory();
+        this.aiBehavior = String.join(" ,", List.of(race.createAIBehavior(), element.createAIBehavior()));
     }
 
     @Override
@@ -26,9 +31,8 @@ public class Murloc extends AbstractEnemy {
         return new Builder()
                 .name(name).health(health).damage(damage)
                 .defense(defense).speed(speed)
-                .abilities(getAbilities())
+                .element(element)
                 .phases(new HashMap<>(phases))
-                .lootTable(lootTable)
                 .aquatic(aquatic)
                 .swarmBonus(swarmBonus)
                 .build();

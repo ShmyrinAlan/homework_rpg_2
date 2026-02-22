@@ -1,6 +1,7 @@
 package com.narxoz.rpg.enemy;
 
 import com.narxoz.rpg.combat.Ability;
+import com.narxoz.rpg.factory.ElfComponentFactory;
 import com.narxoz.rpg.loot.LootTable;
 
 import java.util.HashMap;
@@ -15,6 +16,8 @@ public class Elf extends AbstractEnemy {
         super(builder);
         this.archer = builder.archer;
         this.forestAffinity = builder.forestAffinity;
+        this.race = new ElfComponentFactory();
+        this.aiBehavior = String.join(" ,", List.of(race.createAIBehavior(), element.createAIBehavior()));
     }
 
     @Override
@@ -30,9 +33,8 @@ public class Elf extends AbstractEnemy {
         return new Builder()
                 .name(name).health(health).damage(damage)
                 .defense(defense).speed(speed)
-                .abilities(getAbilities())
+                .element(element)
                 .phases(new HashMap<>(phases))
-                .lootTable(lootTable)
                 .archer(archer)
                 .forestAffinity(forestAffinity)
                 .build();

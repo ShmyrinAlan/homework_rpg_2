@@ -1,6 +1,7 @@
 package com.narxoz.rpg.enemy;
 
 import com.narxoz.rpg.combat.Ability;
+import com.narxoz.rpg.factory.DragonComponentFactory;
 import com.narxoz.rpg.loot.LootTable;
 
 import java.util.List;
@@ -63,17 +64,17 @@ import java.util.HashMap;
  */
 public class Dragon extends AbstractEnemy {
 
-    private String element;
     private boolean canFly;
     private boolean hasBreathAttack;
     private int wingspan;
 
     private Dragon(Builder builder) {
         super(builder);
-        this.element = builder.element;
         this.canFly = builder.canFly;
         this.hasBreathAttack = builder.hasBreathAttack;
         this.wingspan = builder.wingspan;
+        this.race = new DragonComponentFactory();
+        this.aiBehavior = String.join(" ,", List.of(race.createAIBehavior(), element.createAIBehavior()));
     }
 
     @Override
@@ -91,9 +92,8 @@ public class Dragon extends AbstractEnemy {
         return new Builder()
                 .name(name).health(health).damage(damage)
                 .defense(defense).speed(speed)
-                .abilities(getAbilities())
+                .element(element)
                 .phases(new HashMap<>(phases))
-                .lootTable(lootTable)
                 .element(element)
                 .canFly(canFly)
                 .hasBreathAttack(hasBreathAttack)
@@ -107,12 +107,10 @@ public class Dragon extends AbstractEnemy {
 
     public static class Builder extends BaseBuilder<Builder> {
 
-        private String element;
         private boolean canFly;
         private boolean hasBreathAttack;
         private int wingspan;
 
-        public Builder element(String val){ element = val; return this; }
         public Builder canFly(boolean val){ canFly = val; return this; }
         public Builder hasBreathAttack(boolean val){ hasBreathAttack = val; return this; }
         public Builder wingspan(int val){ wingspan = val; return this; }

@@ -79,7 +79,7 @@ public interface EnemyComponentFactory {
      *
      * @return themed loot table
      */
-    LootTable createLootTable();
+    LootTable createLootTable(LootTable loot);
 
     /**
      * Get the AI behavior type for this theme.

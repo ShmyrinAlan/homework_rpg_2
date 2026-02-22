@@ -2,13 +2,13 @@ package com.narxoz.rpg.factory;
 
 import com.narxoz.rpg.combat.Ability;
 import com.narxoz.rpg.loot.LootTable;
-import com.narxoz.rpg.loot.WaterLootDecorator;
+import com.narxoz.rpg.loot.MurlocLootDecorator;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class WaterComponentFactory implements EnemyComponentFactory{
-    private static final List<String> ABILITIES = List.of("tsunami", "ice breath");
+public class MurlocComponentFactory implements EnemyComponentFactory{
+    private static final List<String> ABILITIES = List.of("hit", "jerk", "spit");
     @Override
     public List<Ability> createAbilities() {
         return new ArrayList<>(ABILITIES.stream().map(AbilityFactory.instance()::create).toList());
@@ -16,11 +16,11 @@ public class WaterComponentFactory implements EnemyComponentFactory{
 
     @Override
     public LootTable createLootTable(LootTable loot) {
-        return new WaterLootDecorator(loot);
+        return new MurlocLootDecorator(loot);
     }
 
     @Override
     public String createAIBehavior() {
-        return "smooth";
+        return "stupid";
     }
 }

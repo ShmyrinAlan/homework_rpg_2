@@ -1,6 +1,9 @@
 package com.narxoz.rpg.enemy;
 
+import com.narxoz.rpg.factory.DemonComponentFactory;
+
 import java.util.HashMap;
+import java.util.List;
 
 public class Demon extends AbstractEnemy {
 
@@ -11,6 +14,8 @@ public class Demon extends AbstractEnemy {
         super(builder);
         this.corruptionLevel = builder.corruptionLevel;
         this.summonMinions = builder.summonMinions;
+        this.race = new DemonComponentFactory();
+        this.aiBehavior = String.join(" ,", List.of(race.createAIBehavior(), element.createAIBehavior()));
     }
 
     @Override
@@ -26,9 +31,8 @@ public class Demon extends AbstractEnemy {
         return new Builder()
                 .name(name).health(health).damage(damage)
                 .defense(defense).speed(speed)
-                .abilities(getAbilities())
+                .element(element)
                 .phases(new HashMap<>(phases))
-                .lootTable(lootTable)
                 .corruptionLevel(corruptionLevel)
                 .summonMinions(summonMinions)
                 .build();
